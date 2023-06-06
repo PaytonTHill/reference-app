@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AddReference from './AddReference';
+import DeleteReference from './DeleteReference';
 import './App.css';
 
 function ReferenceList() {
@@ -17,6 +18,12 @@ function ReferenceList() {
       });
   }
 
+  function handleDelete(referenceId) {
+    // Filter out the deleted reference from the list
+    const updatedReferences = references.filter(reference => reference.id !== referenceId);
+    setReferences(updatedReferences);
+  }
+
   useEffect(() => {
     fetchReferences();
   }, []);
@@ -31,6 +38,7 @@ function ReferenceList() {
             <div className="reference-header">
               <h3>{reference.name}</h3>
               <p>{reference.email}</p>
+              <DeleteReference referenceId={reference.id} onDelete={handleDelete} />
             </div>
             <p>{reference.reference_content}</p>
           </div>
