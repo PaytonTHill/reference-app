@@ -7,7 +7,7 @@ function ReferenceList() {
 
   function fetchReferences() {
     console.log('Fetching references...');
-    fetch('/api/references')
+    fetch('http://35.87.198.76/api/references') // Update the URL to '/api/references'
       .then(response => response.json())
       .then(data => {
         setReferences(data);

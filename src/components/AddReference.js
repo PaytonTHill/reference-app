@@ -13,7 +13,7 @@ function AddReference() {
         email,
         reference_content: content,
       };
-      fetch('/api/addReference', {
+      fetch('http://35.87.198.76/api/addReference', { // Update the URL to '/api/addReference'
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
