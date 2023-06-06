@@ -6,19 +6,19 @@ const DeleteReference = ({ referenceId, onDelete }) => {
   const handleDelete = async () => {
     try {
       setLoading(true);
+      console.log('Deleting reference...', referenceId); // New console log
       const response = await fetch(`https://35.87.198.76/api/deleteReference/${referenceId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (response.ok) {
-        // Reference deleted successfully
+        console.log('Reference deleted successfully'); // New console log
         onDelete(referenceId);
       } else {
-        // Error deleting reference
-        console.error('Failed to delete reference');
+        console.error('Failed to delete reference'); // New console log
       }
     } catch (error) {
       console.error('Error deleting reference:', error);
