@@ -80,6 +80,7 @@ button:active {
 }
 
 .reference {
+  position: relative; /* Added */
   width: calc(100% - 10px);
   height: 200px; /* Adjust the height as needed */
   background-color: #fff;
@@ -90,6 +91,20 @@ button:active {
   overflow-wrap: break-word;
 }
 
+.reference-delete-button {
+  position: absolute; /* Added */
+  top: 10px; /* Adjust the positioning as needed */
+  right: 10px; /* Adjust the positioning as needed */
+  width: 30px;
+  height: 30px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 16px;
+  line-height: 0;
+  cursor: pointer;
+}
 
 .reference-header {
   margin-bottom: 10px;
