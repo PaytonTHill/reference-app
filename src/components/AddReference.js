@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function AddReference() {
+function AddReference({ onReferenceAdded }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [content, setContent] = useState('');
@@ -26,6 +26,8 @@ function AddReference() {
           setName('');
           setEmail('');
           setContent('');
+          // Call the callback function to notify the parent component about the new reference
+          onReferenceAdded(result.id);
         })
         .catch(error => {
           console.error('Error adding reference:', error);
