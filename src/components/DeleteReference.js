@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const DeleteReference = ({ referenceId, onDelete }) => {
+    console.log('Handling delete...');
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
