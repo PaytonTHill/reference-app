@@ -24,13 +24,25 @@ function ReferenceList() {
     setReferences(updatedReferences);
   }
 
+  function handleReferenceAdded(referenceId) {
+    // Fetch the updated list of references after a new reference is added
+    fetch('https://35.87.198.76/api/references')
+      .then(response => response.json())
+      .then(data => {
+        setReferences(data);
+      })
+      .catch(error => {
+        console.error('Error fetching references:', error);
+      });
+  }  
+
   useEffect(() => {
     fetchReferences();
   }, []);
 
   return (
     <div>
-      <AddReference />
+      <AddReference onReferenceAdded={handleReferenceAdded} />
 
       <div id="reference-list">
         {references.map(reference => (
