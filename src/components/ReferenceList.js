@@ -38,12 +38,6 @@ function ReferenceList() {
             <div className="reference-header">
               <h3>{reference.name}</h3>
               <p>{reference.email}</p>
-              <button
-                className="reference-delete-button"
-                onClick={() => handleDelete(reference.id)}
-              >
-                Delete
-              </button>
             </div>
             <p>{reference.reference_content}</p>
           </div>
