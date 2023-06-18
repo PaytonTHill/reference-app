@@ -8,7 +8,7 @@ const DeleteReference = ({ referenceId, onDelete }) => {
     try {
       setLoading(true);
       console.log('Deleting reference...', referenceId); 
-      const response = await fetch(`https://35.87.198.76/api/deleteReference/${referenceId}`, {
+      const response = await fetch(`https://paytonhill.com/api/deleteReference/${referenceId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

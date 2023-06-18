@@ -8,7 +8,7 @@ function ReferenceList() {
 
   function fetchReferences() {
     console.log('Fetching references...');
-    fetch('https://35.87.198.76/api/references')
+    fetch('https://paytonhill.com/api/references')
       .then(response => response.json())
       .then(data => {
         setReferences(data);
@@ -26,7 +26,7 @@ function ReferenceList() {
 
   function handleReferenceAdded(referenceId) {
     // Fetch the updated list of references after a new reference is added
-    fetch('https://35.87.198.76/api/references')
+    fetch('https://paytonhill.com/api/references')
       .then(response => response.json())
       .then(data => {
         setReferences(data);
