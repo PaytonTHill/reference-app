@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import AddReference from './AddReference';
 import DeleteReference from './DeleteReference';
 import './App.css';
 
 function ReferenceList() {
   const [references, setReferences] = useState([]);
+  const sessionId = Cookies.get('sessionId');
   const [userId, setUserId] = useState(''); // Assuming you have a way to get the current user ID
   const [showDeleteButtons, setShowDeleteButtons] = useState(false);
 
@@ -44,17 +46,13 @@ function ReferenceList() {
       <AddReference onReferenceAdded={handleReferenceAdded} />
 
       <div id="reference-list">
-        {references.map((reference) => (
+        {references.map(reference => (
           <div key={reference.id} className="reference">
             <div className="reference-header">
               <h3>{reference.name}</h3>
               <p>{reference.email}</p>
-              {showDeleteButtons && (
-                <DeleteReference
-                  referenceId={reference.id}
-                  onDelete={handleDelete}
-                  isOwner={reference.userId === userId} // Compare the user ID with the reference owner's ID
-                />
+              {sessionId === reference.sessionId && (
+                <DeleteReference referenceId={reference.id} onDelete={handleDelete} />
               )}
             </div>
             <p>{reference.reference_content}</p>
