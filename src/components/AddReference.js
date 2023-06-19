@@ -13,7 +13,7 @@ function AddReference({ onReferenceAdded }) {
         email,
         reference_content: content,
       };
-      fetch('https://35.87.198.76/api/addReference', {
+      fetch('https://paytonhill.com/api/addReference', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

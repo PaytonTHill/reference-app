@@ -1,40 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import AddReference from './AddReference';
 import DeleteReference from './DeleteReference';
 import './App.css';
 
 function ReferenceList() {
   const [references, setReferences] = useState([]);
+  const sessionId = Cookies.get('sessionId');
+  const [userId, setUserId] = useState(''); // Assuming you have a way to get the current user ID
+  const [showDeleteButtons, setShowDeleteButtons] = useState(false);
 
   function fetchReferences() {
     console.log('Fetching references...');
-    fetch('https://35.87.198.76/api/references')
-      .then(response => response.json())
-      .then(data => {
+    fetch('https://paytonhill.com/api/references')
+      .then((response) => response.json())
+      .then((data) => {
         setReferences(data);
+        setShowDeleteButtons(false); // Reset the showDeleteButtons state when references are fetched
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error fetching references:', error);
       });
   }
 
   function handleDelete(referenceId) {
     // Filter out the deleted reference from the list
-    const updatedReferences = references.filter(reference => reference.id !== referenceId);
+    const updatedReferences = references.filter(
+      (reference) => reference.id !== referenceId
+    );
     setReferences(updatedReferences);
   }
 
   function handleReferenceAdded(referenceId) {
     // Fetch the updated list of references after a new reference is added
-    fetch('https://35.87.198.76/api/references')
-      .then(response => response.json())
-      .then(data => {
-        setReferences(data);
-      })
-      .catch(error => {
-        console.error('Error fetching references:', error);
-      });
-  }  
+    fetchReferences();
+    setShowDeleteButtons(true); // Show delete buttons after a new reference is added
+  }
 
   useEffect(() => {
     fetchReferences();
@@ -50,7 +51,9 @@ function ReferenceList() {
             <div className="reference-header">
               <h3>{reference.name}</h3>
               <p>{reference.email}</p>
-              <DeleteReference referenceId={reference.id} onDelete={handleDelete} />
+              {sessionId === reference.sessionId && (
+                <DeleteReference referenceId={reference.id} onDelete={handleDelete} />
+              )}
             </div>
             <p>{reference.reference_content}</p>
           </div>
